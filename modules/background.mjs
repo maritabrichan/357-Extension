@@ -1,6 +1,6 @@
 import * as db from "/modules/database.mjs"
 
-db.create_database();
+db.createDatabase();
 
 chrome.contextMenus.create({
     title: "Quick Save to Album",
@@ -11,7 +11,7 @@ chrome.contextMenus.create({
 
 function quickSaveToAlbum(tab) {
     let record = {URL: tab.url, tags: "NONE"}
-    db.insert_records(record).then(r => {
+    db.insertRecord(record).then(r => {
         chrome.notifications.create('quick_Add-' + tab.url, {
             type: 'basic',
             iconUrl: 'notification.png',

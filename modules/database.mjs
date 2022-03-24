@@ -1,10 +1,10 @@
 var db = null;
 
-function set_db(database) {
+function setDB(database) {
     db = database;
 }
 
-function create_database() {
+function createDatabase() {
     const request = window.indexedDB.open('357-Extension');
 
     request.onerror = function (event) {
@@ -28,17 +28,17 @@ function create_database() {
     }
 }
 
-function insert_records(records) {
+function insertRecord(records) {
     if (db) {
-        const insert_transaction = db.transaction("Album", "readwrite");
-        const objectStore = insert_transaction.objectStore("Album");
+        const transaction = db.transaction("Album", "readwrite");
+        const objectStore = transaction.objectStore("Album");
 
         return new Promise((resolve, reject) => {
-            insert_transaction.oncomplete = function () {
+            transaction.oncomplete = function () {
                 resolve(true);
             }
 
-            insert_transaction.onerror = function () {
+            transaction.onerror = function () {
                 resolve(false);
             }
             objectStore.add(records);
@@ -46,7 +46,7 @@ function insert_records(records) {
     }
 }
 
-function read_all() {
+function readAllValues() {
     var objectStore = db.transaction("Album").objectStore("Album");
     objectStore.openCursor().onsuccess = function (event) {
         var cursor = event.target.result;
@@ -57,25 +57,25 @@ function read_all() {
     };
 }
 
-function get_record(key) {
+function getRecord(key) {
     if (db) {
-        const get_transaction = db.transaction("Album", "readonly");
-        const objectStore = get_transaction.objectStore("Album");
+        const transaction = db.transaction("Album", "readonly");
+        const objectStore = transaction.objectStore("Album");
         return objectStore.get(key)
     }
 }
 
-function update_record(record) {
+function updateRecord(record) {
     if (db) {
-        const put_transaction = db.transaction("roster", "readwrite");
-        const objectStore = put_transaction.objectStore("Album");
+        const transaction = db.transaction("roster", "readwrite");
+        const objectStore = transaction.objectStore("Album");
 
         return new Promise((resolve, reject) => {
-            put_transaction.oncomplete = function () {
+            transaction.oncomplete = function () {
                 resolve(true);
             }
 
-            put_transaction.onerror = function () {
+            transaction.onerror = function () {
                 resolve(false);
             }
 
@@ -84,18 +84,18 @@ function update_record(record) {
     }
 }
 
-function delete_record(email) {
+function deleteRecord(email) {
     if (db) {
-        const delete_transaction = db.transaction("Album",
+        const transaction = db.transaction("Album",
             "readwrite");
-        const objectStore = delete_transaction.objectStore("Album");
+        const objectStore = transaction.objectStore("Album");
 
         return new Promise((resolve, reject) => {
-            delete_transaction.oncomplete = function () {
+            transaction.oncomplete = function () {
                 resolve(true);
             }
 
-            delete_transaction.onerror = function () {
+            transaction.onerror = function () {
                 resolve(false);
             }
 
@@ -104,4 +104,4 @@ function delete_record(email) {
     }
 }
 
-export {set_db, create_database, get_record, update_record, delete_record, insert_records, read_all}
+export {setDB, createDatabase, getRecord, updateRecord, deleteRecord, insertRecord, readAllValues}
