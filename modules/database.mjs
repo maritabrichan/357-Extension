@@ -1,9 +1,5 @@
 var db = null;
 
-function setDB(database) {
-    db = database;
-}
-
 function createDatabase() {
     const request = window.indexedDB.open('357-Extension');
 
@@ -28,7 +24,7 @@ function createDatabase() {
     }
 }
 
-function insertRecord(records) {
+const insertRecord = function insertRecord(records) {
     if (db) {
         const transaction = db.transaction("Album", "readwrite");
         const objectStore = transaction.objectStore("Album");
@@ -45,29 +41,32 @@ function insertRecord(records) {
         });
     }
 }
+window.insertRecord = insertRecord;
 
-function readAllValues() {
-    var objectStore = db.transaction("Album").objectStore("Album");
+const readAllValues = function readAllValues() {
+    const objectStore = db.transaction("Album").objectStore("Album");
     objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
+        const cursor = event.target.result;
         if (cursor) {
             alert("URL " + cursor.key + " with tags " + cursor.value.tags);
             cursor.continue();
         }
     };
 }
+window.readAllValues = readAllValues;
 
-function getRecord(key) {
+const getRecord = function getRecord(key) {
     if (db) {
         const transaction = db.transaction("Album", "readonly");
         const objectStore = transaction.objectStore("Album");
         return objectStore.get(key)
     }
 }
+window.getRecord = getRecord;
 
-function updateRecord(record) {
+const updateRecord = function updateRecord(record) {
     if (db) {
-        const transaction = db.transaction("roster", "readwrite");
+        const transaction = db.transaction("Album", "readwrite");
         const objectStore = transaction.objectStore("Album");
 
         return new Promise((resolve, reject) => {
@@ -83,8 +82,9 @@ function updateRecord(record) {
         });
     }
 }
+window.updateRecord = updateRecord;
 
-function deleteRecord(email) {
+const deleteRecord = function deleteRecord(email) {
     if (db) {
         const transaction = db.transaction("Album",
             "readwrite");
@@ -102,6 +102,7 @@ function deleteRecord(email) {
             objectStore.delete(email);
         });
     }
-}
+};
+window.updateRecord = updateRecord;
 
-export {setDB, createDatabase, getRecord, updateRecord, deleteRecord, insertRecord, readAllValues}
+export {createDatabase, getRecord, updateRecord, deleteRecord, insertRecord, readAllValues}
