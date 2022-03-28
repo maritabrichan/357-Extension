@@ -9,8 +9,8 @@ chrome.contextMenus.create({
 });
 
 
-function quickSaveToAlbum(tab) {
-    let record = {URL: tab.url, tags: "NONE"}
+function quickSaveToAlbum(tab, dataUrl) {
+    let record = {URL: tab.url, title: tab.title, tags: "NONE", img: dataUrl}
     db.insertRecord(record).then(r => {
         chrome.notifications.create('quick_Add-' + tab.url, {
             type: 'basic',
@@ -25,7 +25,9 @@ function quickSaveToAlbum(tab) {
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     if (info.menuItemId === "quickSave") {
-        quickSaveToAlbum(tab);
+        chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
+            quickSaveToAlbum(tab, dataUrl);
+        });
     }
 });
 
