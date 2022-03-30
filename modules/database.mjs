@@ -48,7 +48,7 @@ const readAllValues = function readAllValues() {
     objectStore.openCursor().onsuccess = function (event) {
         const cursor = event.target.result;
         if (cursor) {
-            alert("URL " + cursor.key + " with tags " + cursor.value.tags);
+            alert("URL " + cursor.key + " with album " + cursor.value.album);
             cursor.continue();
         }
     };
