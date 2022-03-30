@@ -1,3 +1,24 @@
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'get') {
+        let get_request = readAllValues();
+        get_request.then(res => {
+            chrome.runtime.sendMessage({
+                message: 'get_success',
+                payload: res
+            });
+        });
+    } else if (request.message === 'delete') {
+        let delete_request = deleteRecord(request.payload);
+        delete_request.then(res => {
+            chrome.runtime.sendMessage({
+                message: 'delete_success',
+                payload: res
+            });
+        });
+    }
+});
+
+
 var db = null;
 
 function createDatabase() {
@@ -44,14 +65,13 @@ const insertRecord = function insertRecord(records) {
 window.insertRecord = insertRecord;
 
 const readAllValues = function readAllValues() {
-    const objectStore = db.transaction("Album").objectStore("Album");
-    objectStore.openCursor().onsuccess = function (event) {
-        const cursor = event.target.result;
-        if (cursor) {
-            alert("URL " + cursor.key + " with album " + cursor.value.album);
-            cursor.continue();
+    const objectStore = db.transaction("Album").objectStore("Album").getAll();
+    return new Promise((resolve, reject) => {
+        objectStore.onsuccess = function (event) {
+            const cursor = event.target.result;
+            resolve(cursor);
         }
-    };
+    });
 }
 window.readAllValues = readAllValues;
 
@@ -84,7 +104,7 @@ const updateRecord = function updateRecord(record) {
 }
 window.updateRecord = updateRecord;
 
-const deleteRecord = function deleteRecord(email) {
+const deleteRecord = function deleteRecord(key) {
     if (db) {
         const transaction = db.transaction("Album",
             "readwrite");
@@ -99,7 +119,7 @@ const deleteRecord = function deleteRecord(email) {
                 resolve(false);
             }
 
-            objectStore.delete(email);
+            objectStore.delete(key);
         });
     }
 };

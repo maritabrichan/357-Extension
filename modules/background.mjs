@@ -20,9 +20,8 @@ chrome.runtime.onInstalled.addListener(() => {
     }
 });
 
-
-function quickSaveToAlbum(albumName, tab) {
-    let record = {URL: tab.url, album: albumName}
+function quickSaveToAlbum(albumName, tab, dataUrl) {
+    let record = {URL: tab.url, title: tab.title, tags: albumName, img: dataUrl}
     db.insertRecord(record).then(r => {
         chrome.notifications.create('quick_Add-' + tab.url, {
             type: 'basic',
@@ -41,7 +40,9 @@ function isSubMenuOption(name) {
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     if (isSubMenuOption(info.menuItemId)) {
-        quickSaveToAlbum(info.menuItemId, tab);
+        chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
+            quickSaveToAlbum(info.menuItemId, tab, dataUrl);
+        });
     }
 });
 
