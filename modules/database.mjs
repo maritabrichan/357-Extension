@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 payload: res
             });
         });
-    }else if(request.message === 'delete') {
+    } else if (request.message === 'delete') {
         let delete_request = deleteRecord(request.payload);
         delete_request.then(res => {
             chrome.runtime.sendMessage({
@@ -72,8 +72,6 @@ const readAllValues = function readAllValues() {
             resolve(cursor);
         }
     });
-
-
 }
 window.readAllValues = readAllValues;
 
