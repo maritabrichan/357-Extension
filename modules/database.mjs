@@ -1,27 +1,6 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'get') {
-        let get_request = readAllValues();
-        get_request.then(res => {
-            chrome.runtime.sendMessage({
-                message: 'get_success',
-                payload: res
-            });
-        });
-    } else if (request.message === 'delete') {
-        let delete_request = deleteRecord(request.payload);
-        delete_request.then(res => {
-            chrome.runtime.sendMessage({
-                message: 'delete_success',
-                payload: res
-            });
-        });
-    }
-});
-
-
 var db = null;
 
-function createDatabase() {
+const createDatabase = function createDatabase() {
     const request = window.indexedDB.open('357-Extension');
 
     request.onerror = function (event) {
@@ -65,13 +44,14 @@ const insertRecord = function insertRecord(records) {
 window.insertRecord = insertRecord;
 
 const readAllValues = function readAllValues() {
-    const objectStore = db.transaction("Album").objectStore("Album").getAll();
-    return new Promise((resolve, reject) => {
-        objectStore.onsuccess = function (event) {
-            const cursor = event.target.result;
-            resolve(cursor);
-        }
-    });
+    if (db) {
+        const objectStore = db.transaction("Album").objectStore("Album").getAll();
+        return new Promise((res, reject) => {
+            objectStore.onsuccess = function (event) {
+                res(event.target.result);
+            }
+        });
+    }
 }
 window.readAllValues = readAllValues;
 
