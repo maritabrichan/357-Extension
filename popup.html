@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>html {
-        min-height: 580px;
-        min-width: 780px
+        min-height: 400px;
+        min-width: 300px
     }
     </style>
     <script type="module" src="popup.js"></script>
@@ -16,13 +16,47 @@
 <body>
 
 <main role="main">
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row card-deck" id="Album"></div>
-<!--            <span  id="delete-link"></span>-->
-        </div>
-    </div>
+    <div class="container my-4">
+        <a class="btn btn-primary me-2" href="https://mdbootstrap.com/docs/standard/getting-started/installation/"
+           target="_blank" role="button">View Album <i class="fas fa-download"></i></a>
+        <hr class="mb-5"/>
+        <p class="font-weight-bold px-3">Available Albums</p>
 
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check0">
+                    <label class="album-checkbox-label" for="check0">Book</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check1">
+                    <label class="album-checkbox-label" for="check1">Clothing/Fashion</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check2">
+                    <label class="album-checkbox-label" for="check2">Electronics</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check3">
+                    <label class="album-checkbox-label" for="check3">Food</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check4">
+                    <label class="album-checkbox-label" for="check3">School</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check5">
+                    <label class="album-checkbox-label" for="check5">Travel</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check6">
+                    <label class="album-checkbox-label" for="check6">Other</label>
+                </div>
+            </li>
+        </ul>
+        <a class="btn btn-primary" href="https://mdbootstrap.com/docs/standard/getting-started/installation/"
+           target="_blank" role="button">Add to Album<i class="fas fa-download"></i></a>
+    </div>
 </main>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
