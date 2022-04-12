@@ -21,7 +21,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 function quickSaveToAlbum(albumName, tab, dataUrl) {
-    let record = {URL: tab.url, title: tab.title, tags: albumName, img: dataUrl}
+    let record = {URL: tab.url, title: tab.title, tags: [albumName], img: dataUrl}
     db.insertRecord(record).then(r => {
         chrome.notifications.create('quick_Add-' + tab.url, {
             type: 'basic',
