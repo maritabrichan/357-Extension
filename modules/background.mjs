@@ -27,7 +27,7 @@ chrome.runtime.onInstalled.addListener(() => {
     })
 });
 
-function quickSaveToAlbum(albumName, tab, dataUrl) {
+function quickAddAlbumRecord(albumName, tab, dataUrl) {
     let record = {URL: tab.url, title: tab.title, tags: [albumName], img: dataUrl}
     db.insertRecord(record).then(r => {
         chrome.notifications.create('quick_Add-' + tab.url, {
@@ -41,22 +41,40 @@ function quickSaveToAlbum(albumName, tab, dataUrl) {
     });
 }
 
-function isSubMenuOption(key) {
-    return albumTitles.has(parseInt(key));
-}
-
-function getAlbumNameFromKey(key) {
-    return albumTitles.get(key);
+const addAlbumRecord = async function addAlbum(tags) {
+    chrome.tabs.getSelected(null, function (tab) {
+        chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
+            let record = {URL: tab.url, title: tab.title, tags: tags, img: dataUrl}
+            db.insertRecord(record).then(r => {
+                chrome.notifications.create('quick_Add-' + tab.url, {
+                    type: 'basic',
+                    iconUrl: 'notification.png',
+                    title: '357-Extension',
+                    message: 'Page added to your Album!',
+                    priority: 2,
+                    silent: true
+                });
+            });
+        });
+    });
 }
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     if (isSubMenuOption(info.menuItemId)) {
         chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
-            quickSaveToAlbum(getAlbumNameFromKey(parseInt(info.menuItemId)), tab, dataUrl);
+            quickAddAlbumRecord(getAlbumNameFromKey(parseInt(info.menuItemId)), tab, dataUrl);
         });
     }
 });
 
+function isSubMenuOption(key) {
+    return albumTitles.has(parseInt(key));
+}
+
+const getAlbumNameFromKey = function getAlbumNameFromKey(key) {
+    return albumTitles.get(key);
+}
 
 
-
+window.addAlbumRecord = addAlbumRecord;
+window.getAlbumNameFromKey = getAlbumNameFromKey;
