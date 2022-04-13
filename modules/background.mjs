@@ -1,7 +1,14 @@
 import * as db from "/modules/database.mjs"
 
 db.createDatabase();
-const albumTitles = ['Book', 'Clothing/Fashion', 'Electronics', 'Food', 'School', 'Travel', 'Other'];
+const albumTitles = new Map(
+    [[0, 'Book'],
+        [1, 'Clothing/Fashion'],
+        [2, 'Electronics'],
+        [3, 'Food'],
+        [4, 'School'],
+        [5, 'Travel'],
+        [6, 'Other']]);
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
@@ -9,15 +16,15 @@ chrome.runtime.onInstalled.addListener(() => {
         contexts: ["all"],
         id: "parent",
     });
-    for (var i = 0; i < albumTitles.length; i++) {
-        var albumTitle = albumTitles[i];
+    albumTitles.forEach((value, key) => {
+        // for (var albumTitle of albumTitles.entries()) {
         chrome.contextMenus.create({
-            title: albumTitle,
+            title: value,
             contexts: ["all"],
             parentId: "parent",
-            id: albumTitle,
+            id: "" + key
         })
-    }
+    })
 });
 
 function quickSaveToAlbum(albumName, tab, dataUrl) {
@@ -34,14 +41,18 @@ function quickSaveToAlbum(albumName, tab, dataUrl) {
     });
 }
 
-function isSubMenuOption(name) {
-    return albumTitles.indexOf(name) >= 0;
+function isSubMenuOption(key) {
+    return albumTitles.has(parseInt(key));
+}
+
+function getAlbumNameFromKey(key) {
+    return albumTitles.get(key);
 }
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     if (isSubMenuOption(info.menuItemId)) {
         chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
-            quickSaveToAlbum(info.menuItemId, tab, dataUrl);
+            quickSaveToAlbum(getAlbumNameFromKey(parseInt(info.menuItemId)), tab, dataUrl);
         });
     }
 });
