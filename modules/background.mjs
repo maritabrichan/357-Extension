@@ -1,7 +1,14 @@
 import * as db from "/modules/database.mjs"
 
 db.createDatabase();
-const albumTitles = ['Book', 'Clothing/Fashion', 'Electronics', 'Food', 'School', 'Travel', 'Other'];
+const albumTitles = new Map(
+    [[0, 'Book'],
+        [1, 'Clothing/Fashion'],
+        [2, 'Electronics'],
+        [3, 'Food'],
+        [4, 'School'],
+        [5, 'Travel'],
+        [6, 'Other']]);
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
@@ -9,18 +16,18 @@ chrome.runtime.onInstalled.addListener(() => {
         contexts: ["all"],
         id: "parent",
     });
-    for (var i = 0; i < albumTitles.length; i++) {
-        var albumTitle = albumTitles[i];
+    albumTitles.forEach((value, key) => {
+        // for (var albumTitle of albumTitles.entries()) {
         chrome.contextMenus.create({
-            title: albumTitle,
+            title: value,
             contexts: ["all"],
             parentId: "parent",
-            id: albumTitle,
+            id: "" + key
         })
-    }
+    })
 });
 
-function quickSaveToAlbum(albumName, tab, dataUrl) {
+function quickAddAlbumRecord(albumName, tab, dataUrl) {
     let record = {URL: tab.url, title: tab.title, tags: [albumName], img: dataUrl}
     db.insertRecord(record).then(r => {
         chrome.notifications.create('quick_Add-' + tab.url, {
@@ -34,18 +41,40 @@ function quickSaveToAlbum(albumName, tab, dataUrl) {
     });
 }
 
-function isSubMenuOption(name) {
-    return albumTitles.indexOf(name) >= 0;
+const addAlbumRecord = async function addAlbum(tags) {
+    chrome.tabs.getSelected(null, function (tab) {
+        chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
+            let record = {URL: tab.url, title: tab.title, tags: tags, img: dataUrl}
+            db.insertRecord(record).then(r => {
+                chrome.notifications.create('quick_Add-' + tab.url, {
+                    type: 'basic',
+                    iconUrl: 'notification.png',
+                    title: '357-Extension',
+                    message: 'Page added to your Album!',
+                    priority: 2,
+                    silent: true
+                });
+            });
+        });
+    });
 }
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     if (isSubMenuOption(info.menuItemId)) {
         chrome.tabs.captureVisibleTab(null, null, function (dataUrl) {
-            quickSaveToAlbum(info.menuItemId, tab, dataUrl);
+            quickAddAlbumRecord(getAlbumNameFromKey(parseInt(info.menuItemId)), tab, dataUrl);
         });
     }
 });
 
+function isSubMenuOption(key) {
+    return albumTitles.has(parseInt(key));
+}
+
+const getAlbumNameFromKey = function getAlbumNameFromKey(key) {
+    return albumTitles.get(key);
+}
 
 
-
+window.addAlbumRecord = addAlbumRecord;
+window.getAlbumNameFromKey = getAlbumNameFromKey;
