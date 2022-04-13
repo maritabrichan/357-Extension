@@ -1,179 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <style>
-
-        html {
-            min-height: 580px;
-            min-width: 780px;
-        }
-
-        body {
-            background-color: rgba(241, 241, 241, 0.99) !important;
-        }
-
-        .w3-text-red {
-            margin-top: 0px;
-        !important;
-            margin-bottom: -10px;
-        !important;
-        }
-
-        .w3-round {
-            overflow: hidden; !important;
-            border: 5px solid rgba(255, 0, 0, 0.5);
-        }
-
-        .w3-margin-bottom {
-            box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.15);
-        }
-
-
-        .imgDiv {
-            width: 100%;
-            height: 10em;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .titleScroll {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: pre;
-            height: 2em;
-        }
-        .titleScroll:hover {
-            text-overflow: unset;
-        }
-
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-            padding-bottom: 250px;
-        }
-
-        ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin:0.5em 2em
-
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            -webkit-box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .searchDiv {
-            padding: 20px;
-
-        }
-
-
-        #searchBtn {
-            margin: 5px 0px;
-
-        }
-
-        .w3-row-padding {
-            display: flex;
-            flex-direction: row;
-            overflow-x: overlay;
-        }
+    <title>Title</title>
+    <style>html {
+        min-height: 400px;
+        min-width: 300px
+    }
     </style>
-
+    <script type="module" src="popup.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<header style="text-align: center" class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
-    <span>SOEN 357 Extension</span>
-</header>
-<div class="searchDiv" style="margin-top:5%;margin-right:40px"><input class="w3-input w3-border" type="text"
-                                                                      id="searchKeyword"
-                                                                      placeholder="What are you looking for...?">
-    <button class="btn w3-button w3-dark-grey" id="searchBtn">Search</button>
-</div>
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="searchContainer">
-        <h1 class="w3-xxlarge w3-text-red">Search Result</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="search"></div>
-        <br/>
+
+<main role="main">
+    <div class="container my-4">
+        <a class="btn btn-primary me-2" href="https://mdbootstrap.com/docs/standard/getting-started/installation/"
+           target="_blank" role="button">View Album <i class="fas fa-download"></i></a>
+        <hr class="mb-5"/>
+        <p class="font-weight-bold px-3">Available Albums</p>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check0">
+                    <label class="album-checkbox-label" for="check0">Book</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check1">
+                    <label class="album-checkbox-label" for="check1">Clothing/Fashion</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check2">
+                    <label class="album-checkbox-label" for="check2">Electronics</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check3">
+                    <label class="album-checkbox-label" for="check3">Food</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check4">
+                    <label class="album-checkbox-label" for="check3">School</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check5">
+                    <label class="album-checkbox-label" for="check5">Travel</label>
+                </div>
+                <div class="album-checkbox">
+                    <input type="checkbox" class="album-checkbox-input" id="check6">
+                    <label class="album-checkbox-label" for="check6">Other</label>
+                </div>
+            </li>
+        </ul>
+        <a class="btn btn-primary" href="https://mdbootstrap.com/docs/standard/getting-started/installation/"
+           target="_blank" role="button">Add to Album<i class="fas fa-download"></i></a>
     </div>
-</div>
+</main>
 
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="BookContainer">
-        <h1 class="w3-xxlarge w3-text-red">Book</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="Book"></div>
-        <br/>
-    </div>
-</div>
-
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="Clothing/FashionContainer">
-        <h1 class="w3-xxlarge w3-text-red">Clothing/Fashion</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="Clothing/Fashion"></div>
-        <br/>
-    </div>
-</div>
-
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="ElectronicsContainer">
-        <h1 class="w3-xxlarge w3-text-red">Electronics</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="Electronics"></div>
-        <br/>
-    </div>
-</div>
-
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="FoodContainer">
-        <h1 class="w3-xxlarge w3-text-red">Food</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="Food"></div>
-        <br/>
-    </div>
-</div>
-
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="SchoolContainer">
-        <h1 class="w3-xxlarge w3-text-red">School</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="School"></div>
-        <br/>
-    </div>
-</div>
-
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="TravelContainer">
-        <h1 class="w3-xxlarge w3-text-red">Travel</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="Travel"></div>
-        <br/>
-    </div>
-</div>
-
-<div class="w3-row-padding ">
-    <div hidden class="w3-container" id="OtherContainer">
-        <h1 class="w3-xxlarge w3-text-red">Other</h1>
-        <hr class="w3-round">
-        <div class="w3-row-padding" id="Other"></div>
-        <br/>
-    </div>
-</div>
-
-
-<script type="module" src="popup.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
