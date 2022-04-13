@@ -13,7 +13,8 @@ function getAllLinks() {
     elements = db.transaction("Album").objectStore("Album").getAll();
     elements.onsuccess = function (event) {
         event.target.result.map(element => {
-            renderURL(element);
+            for (var i = 0; i < element.tags.length; i++)
+                renderURL(element, element.tags[i]);
         });
     }
 }
@@ -22,15 +23,16 @@ function updateLinks(tag) {
     elements = db.transaction("Album").objectStore("Album").getAll();
     elements.onsuccess = function (event) {
         event.target.result.map(element => {
-            if (element.tags === tag)
-                renderURL(element);
+            for (var i = 0; i < element.tags.length; i++)
+                if (element.tags[i] === tag)
+                    renderURL(element, element.tags[i]);
         });
     }
 }
 
 const albumTitles = ['Book', 'Clothing/Fashion', 'Electronics', 'Food', 'School', 'Travel', 'Other'];
 
-function renderURL(record) {
+function renderURL(record, tag) {
     const recordDivCont = document.createElement("div");
     const recordDiv = document.createElement("div");
     const imgDiv = document.createElement("div");
@@ -46,7 +48,7 @@ function renderURL(record) {
     recordDivCont.className = "w3-col m4 w3-margin-bottom"
     recordDiv.className = "w3-light-grey"
     recordDivCont.style = "max-width:20%"
-    imgDiv.className="imgDiv"
+    imgDiv.className = "imgDiv"
     img.src = record.img;
     img.style = "width:100% "
     img.className = "card-img-top img-fluid"
@@ -71,24 +73,24 @@ function renderURL(record) {
     for (var i = 0; i < albumTitles.length; i++) {
         var option = document.createElement("option");
         option.setAttribute("value", albumTitles[i]);
-        if (albumTitles[i] === record.tags) {
+        if (albumTitles[i] === tag) {
             option.text = "Move to another album";
             option.setAttribute("hidden", true)
         } else
             option.text = albumTitles[i];
         moveBtn.appendChild(option);
-        if (albumTitles[i] === record.tags)
+        if (albumTitles[i] === tag)
             moveBtn.selectedIndex = i;
 
     }
 
     moveBtn.addEventListener("change", () => {
-        const oldTag = record.tags;
-        record.tags = moveBtn.value;
+        const oldTag = tag;
+        tag = moveBtn.value;
         updateRecord(record, oldTag);
     })
     delBtn.addEventListener("click", () => {
-        deleteRecord(record.URL, record.tags);
+        deleteRecord(record, tag);
     })
     container.appendChild(title);
     containerBtn.appendChild(urlBtn);
@@ -100,63 +102,27 @@ function renderURL(record) {
     recordDiv.appendChild(moveBtn);
     recordDivCont.appendChild(recordDiv);
 
-    document.getElementById(`${record.tags}Container`).removeAttribute("hidden")
-    document.getElementById(`${record.tags}`).appendChild(recordDivCont)
+    document.getElementById(`${tag}Container`).removeAttribute("hidden")
+    document.getElementById(`${tag}`).appendChild(recordDivCont)
 }
 
-function deleteRecord(key, tag) {
+function deleteRecord(record, tag) {
     const transaction = db.transaction("Album", "readwrite");
     const objectStore = transaction.objectStore("Album");
     document.getElementById(`${tag}Container`).setAttribute("hidden", true)
     document.getElementById(`${tag}`).innerHTML = ""
     updateLinks(tag);
-    objectStore.delete(key);
+    if (record.tags.length === 1)
+        objectStore.delete(record.URL);
+    else
+        for (var i = 0; i < record.tags.length; i++)
+            if (record.tags[i] === tag) {
+                record.tags.splice(i, 1);
+                objectStore.put(record);
+            }
 }
 
-function search11(keyword) {
-    const objectStore = db.transaction("Album", "readwrite").objectStore("Album");
-    const index = objectStore.index("title");
 
-    const request = index.openCursor();
-    // request.onsuccess = function (event) {
-    //     var cursor = event.target.result;
-    //     if (cursor) {
-    //         if (cursor.value.column.indexOf(keyword) !== -1) {
-    //             console.log("We found a row with value: " + JSON.stringify(cursor.value));
-    //         }
-    //
-    //         cursor.continue();
-    //     }
-    // };
-    return index.openCursor(range).then(function showRange(cursor) {
-        if (!cursor) {return;}
-        console.log('Cursored at:', cursor.key);
-        for (var field in cursor.value) {
-            console.log(cursor.value[field]);
-        }
-        return cursor.continue().then(showRange);
-    }).then(function() {
-        console.log('Done cursoring');
-    });
-
-}
-function search(range) {
-
-
-    var tx = db.transaction(['Album'], 'readonly');
-    var store = tx.objectStore('Album');
-    var index = store.index('URL');
-    return index.openCursor(range).then(function showRange(cursor) {
-        if (!cursor) {return;}
-        console.log('Cursored at:', cursor.key);
-        for (var field in cursor.value) {
-            console.log(cursor.value[field]);
-        }
-        return cursor.continue().then(showRange);
-    }).then(function() {
-        console.log('Done cursoring');
-    });
-}
 const searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", event => {
     event.preventDefault();
