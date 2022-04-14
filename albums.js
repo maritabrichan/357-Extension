@@ -1,5 +1,7 @@
 let db;
 let elements;
+const albumTitles = ['Book', 'Clothing/Fashion', 'Electronics', 'Food', 'School', 'Travel', 'Other'];
+
 onload = function () {
     const request = window.indexedDB.open('357-Extension');
     request.onsuccess = function (event) {
@@ -10,6 +12,10 @@ onload = function () {
 };
 
 function getAllLinks() {
+    for (let i = 0; i < albumTitles.length; i++) {
+        document.getElementById(`${albumTitles[i]}Container`).setAttribute("hidden", true)
+        document.getElementById(`${albumTitles[i]}`).innerHTML = ""
+    }
     elements = db.transaction("Album").objectStore("Album").getAll();
     elements.onsuccess = function (event) {
         event.target.result.map(element => {
@@ -30,7 +36,6 @@ function updateLinks(tag) {
     }
 }
 
-const albumTitles = ['Book', 'Clothing/Fashion', 'Electronics', 'Food', 'School', 'Travel', 'Other'];
 
 function renderURL(record, tag) {
     const recordDivCont = document.createElement("div");
@@ -49,11 +54,8 @@ function renderURL(record, tag) {
 
     recordDivCont.className = "w3-col m4 w3-margin-bottom"
     recordDiv.className = "w3-light-grey"
-    recordDivCont.style = "min-width:20em;  margin-right:10px; margin-left:10px "
-    recordDiv.style = "max-width:20em;"
     imgDiv.className = "imgDiv"
     img.src = record.img;
-    img.style = "width:100% "
     img.className = "card-img-top img-fluid"
     container.className = "w3-container"
     title.textContent = record.title;
@@ -73,12 +75,8 @@ function renderURL(record, tag) {
     urlBtn.className = "btn btnSeparator w3-padding-small w3-button w3-dark-grey"
     delBtn.className = "btn w3-padding-small w3-hover-red w3-dark-grey"
     cp_mvBtn.className = "btn-group d-flex"
-    cp_mvBtn.style.marginTop = "2px";
     moveBtn.className = "btn btnSeparatorR w3-button w3-padding-small w3-dark-grey"
     copyBtn.className = "btn  btnSeparatorL w3-button w3-padding-small w3-dark-grey"
-    moveBtn.style="max-width:50%; min-width:9.5em"
-    copyBtn.style="max-width:50%; min-width:9.4em"
-
 
 
     let option = document.createElement("option");
@@ -141,12 +139,7 @@ function renderURL(record, tag) {
 function updateRecord(record, oldTag, newTag, cp_mv) {
     const transaction = db.transaction("Album", "readwrite");
     const objectStore = transaction.objectStore("Album");
-    document.getElementById(`${oldTag}Container`).setAttribute("hidden", true)
-    document.getElementById(`${newTag}Container`).setAttribute("hidden", true)
-    document.getElementById(`${oldTag}`).innerHTML = ""
-    document.getElementById(`${newTag}`).innerHTML = ""
-    updateLinks(oldTag);
-    updateLinks(newTag);
+
     record.tags.push(newTag)
     if (cp_mv === 'move') {
 
@@ -157,14 +150,13 @@ function updateRecord(record, oldTag, newTag, cp_mv) {
             }
     } else
         objectStore.put(record);
+    getAllLinks()
 }
 
 function deleteRecord(record, tag) {
     const transaction = db.transaction("Album", "readwrite");
     const objectStore = transaction.objectStore("Album");
-    document.getElementById(`${tag}Container`).setAttribute("hidden", true)
-    document.getElementById(`${tag}`).innerHTML = ""
-    updateLinks(tag);
+
     if (record.tags.length === 1)
         objectStore.delete(record.URL);
     else
@@ -173,6 +165,7 @@ function deleteRecord(record, tag) {
                 record.tags.splice(i, 1);
                 objectStore.put(record);
             }
+    getAllLinks()
 }
 
 let searchResult;
@@ -200,7 +193,6 @@ function search(keywords) {
         }
         if (flag)
             document.getElementById('noSearchResult').removeAttribute("hidden")
-
     }
 }
 

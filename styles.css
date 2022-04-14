@@ -63,6 +63,21 @@ body {
     overflow-x: overlay;
 }
 
+.w3-col {
+    padding: 8px !important;
+    min-width: 20em;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.w3-light-grey {
+    max-width: 20em;
+}
+
+img {
+    width: 100%
+}
+
 .navbar {
     position: sticky;
     top: 0;
@@ -76,10 +91,17 @@ body {
 
 .btnSeparatorR {
     border-right: solid;
+    max-width: 50%;
+    min-width: 9.5em;
+    margin-top: 2px;
+
 }
 
 .btnSeparatorL {
     border-left: solid;
+    max-width: 50%;
+    min-width: 9.4em;
+    margin-top: 2px;
 }
 
 
