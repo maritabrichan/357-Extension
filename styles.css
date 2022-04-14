@@ -1,0 +1,85 @@
+body {
+    background-color: rgba(241, 241, 241, 0.99) !important;
+}
+
+.w3-text-red {
+    margin-top: 0px;
+!important;
+    margin-bottom: -10px;
+!important;
+}
+
+.w3-round {
+    overflow: hidden;
+!important;
+    border: 5px solid rgba(255, 0, 0, 0.5);
+}
+
+.w3-margin-bottom {
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+
+.imgDiv {
+    width: 100%;
+    height: 10em;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.titleScroll {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: pre;
+    height: 2em;
+}
+
+.titleScroll:hover {
+    text-overflow: unset;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    padding-bottom: 250px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.w3-row-padding {
+    display: flex;
+    flex-direction: row;
+    overflow-x: overlay;
+}
+.dropdown.dropdown-center {
+    display: inline-block;
+    width: 180px;
+}
+.dropdown-menu.dropdown-menu-center {
+    text-align: left;
+    width: 180px;
+}
+.w3-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.btnSeparator {
+    border-right: solid;
+}
+
+.btnSeparatorr {
+    border-right: solid;
+}
+.btnSeparatorl {
+    border-left: solid;
+}

@@ -1,176 +1,126 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <style>
-
-    body {
-      background-color: rgba(241, 241, 241, 0.99) !important;
-    }
-
-    .w3-text-red {
-      margin-top: 0px;
-    !important;
-      margin-bottom: -10px;
-    !important;
-    }
-
-    .w3-round {
-        max-width: 80em;
-      overflow: hidden; !important;
-      border: 5px solid rgba(255, 0, 0, 0.5);
-    }
-
-    .w3-margin-bottom {
-      box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.15);
-    }
-
-
-    .imgDiv {
-      width: 100%;
-      height: 10em;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .titleScroll {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: pre;
-      height: 2em;
-    }
-    .titleScroll:hover {
-      text-overflow: unset;
-    }
-
-    ::-webkit-scrollbar {
-      width: 12px;
-      height: 12px;
-      padding-bottom: 250px;
-    }
-
-    ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      margin:0.5em 2em
-
-    }
-
-    ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .searchDiv {
-      padding: 20px;
-
-    }
-
-
-    #searchBtn {
-      margin: 5px 0px;
-
-    }
-
-    .w3-row-padding {
-      display: flex;
-      flex-direction: row;
-      overflow-x: overlay;
-    }
-  </style>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header style="text-align: center" class="w3-container w3-top w3-red w3-xlarge w3-padding">
-  <span>SOEN 357 Extension</span>
-</header>
 
 
+<nav class="navbar w3-red  ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="color: white" href="albums.html">SOEN 357 Extension</a>
+        </div>
+        <div class="navbar-form navbar-right">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="search" id="searchKeywords">
+                <div class="input-group-btn">
+                    <button class="btn btn-default w3-dark-grey" type="submit" id="searchBtn">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 
-<div class="searchDiv" style="margin-top:5%;margin-right:40px"><input class="w3-input w3-border" type="text"
-                                                                      id="searchKeyword"
-                                                                      placeholder="What are you looking for...?">
-  <button class="btn w3-button w3-dark-grey" id="searchBtn">Search</button>
-</div>
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="searchContainer">
+<div hidden class="w3-container" id="searchContainer">
+    <a class="btn w3-dark-grey" style="float: right" href="albums.html" role="button">
+        <i class="bi bi-arrow-return-left"></i> </a>
     <h1 class="w3-xxlarge w3-text-red">Search Result</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="search"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+        <div class="w3-row-padding" id="search"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="BookContainer">
+<div hidden class="w3-container" id="noSearchResult">
+    <a class="btn w3-dark-grey" style="float: right" href="albums.html" role="button">
+        <i class="bi bi-arrow-return-left"></i> </a>
+    <h1 class="w3-xxlarge w3-text-red">Search Result</h1>
+    <hr class="w3-round">
+    <h1  style="text-align: center"><i class="bi bi-emoji-frown"></i> No results found <i class="bi bi-emoji-frown"></i></h1>
+</div>
+
+
+<div hidden class="w3-container" id="BookContainer">
     <h1 class="w3-xxlarge w3-text-red">Book</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="Book"></div>
-    <br/>
-  </div>
+    <div class="w3-container ">
+        <div class="w3-row-padding" id="Book"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="Clothing/FashionContainer">
+<div hidden class="w3-container" id="Clothing/FashionContainer">
     <h1 class="w3-xxlarge w3-text-red">Clothing/Fashion</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="Clothing/Fashion"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+
+        <div class="w3-row-padding" id="Clothing/Fashion"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="ElectronicsContainer">
+<div hidden class="w3-container" id="ElectronicsContainer">
     <h1 class="w3-xxlarge w3-text-red">Electronics</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="Electronics"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+
+        <div class="w3-row-padding" id="Electronics"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="FoodContainer">
+<div hidden class="w3-container" id="FoodContainer">
     <h1 class="w3-xxlarge w3-text-red">Food</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="Food"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+
+        <div class="w3-row-padding" id="Food"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="SchoolContainer">
+<div hidden class="w3-container" id="SchoolContainer">
     <h1 class="w3-xxlarge w3-text-red">School</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="School"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+
+        <div class="w3-row-padding" id="School"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="TravelContainer">
+<div hidden class="w3-container" id="TravelContainer">
     <h1 class="w3-xxlarge w3-text-red">Travel</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="Travel"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+        <div class="w3-row-padding" id="Travel"></div>
+        <br/>
+    </div>
 </div>
 
-<div class="w3-row-padding ">
-  <div hidden class="w3-container" id="OtherContainer">
+<div hidden class="w3-container" id="OtherContainer">
     <h1 class="w3-xxlarge w3-text-red">Other</h1>
     <hr class="w3-round">
-    <div class="w3-row-padding" id="Other"></div>
-    <br/>
-  </div>
+    <div class="w3-row-padding ">
+        <div class="w3-row-padding" id="Other"></div>
+        <br/>
+    </div>
 </div>
 
 
