@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 tags.push(background.getAlbumNameFromKey(i));
             }
         }
+        if (tags === undefined || tags.length == 0) {
+            tags.push("Other");
+        }
         background.addAlbumRecord(tags);
         window.close();
     });
