@@ -48,7 +48,7 @@ const addAlbumRecord = async function addAlbum(tags) {
             db.insertRecord(record).then(r => {
                 chrome.notifications.create('quick_Add-' + tab.url, {
                     type: 'basic',
-                    iconUrl: 'notification.png',
+                    iconUrl: dataUrl,
                     title: '357-Extension',
                     message: 'Page added to your Album!',
                     priority: 2,

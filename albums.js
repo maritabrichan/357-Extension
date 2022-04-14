@@ -74,8 +74,8 @@ function renderURL(record, tag) {
     delBtn.className = "btn w3-padding-small w3-hover-red w3-dark-grey"
     cp_mvBtn.className = "btn-group d-flex"
     cp_mvBtn.style.marginTop = "2px";
-    moveBtn.className = "btn btnSeparatorr w3-button w3-padding-small w3-dark-grey"
-    copyBtn.className = "btn  btnSeparatorl w3-button w3-padding-small w3-dark-grey"
+    moveBtn.className = "btn btnSeparatorR w3-button w3-padding-small w3-dark-grey"
+    copyBtn.className = "btn  btnSeparatorL w3-button w3-padding-small w3-dark-grey"
     moveBtn.style="max-width:50%; min-width:9.5em"
     copyBtn.style="max-width:50%; min-width:9.4em"
 
