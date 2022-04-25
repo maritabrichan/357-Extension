@@ -5,16 +5,26 @@ body {
 
 
 .w3-text-red {
-    margin-top: 0px;
+    margin-top: 0px
 !important;
-    margin-bottom: -10px;
+    margin-bottom: -10px
 !important;
 }
 
+h1 {
+    color: black !important;
+}
+
+#BookContainer, #SchoolContainer {
+    /* border-bottom: 4px solid black; */
+    margin: 20px;
+    padding-bottom: 10px;
+}
+
 .w3-round {
-    overflow: hidden;
+    overflow: hidden
 !important;
-    border: 5px solid rgba(255, 0, 0, 0.5);
+    border: 5px solid rgba(0, 0, 0, 15);
 }
 
 .w3-margin-bottom {
@@ -26,7 +36,6 @@ body {
     width: 100%;
     height: 10em;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .titleScroll {
@@ -84,6 +93,12 @@ img {
     left: 0;
     z-index: 1000;
     border-bottom: 2px solid black;
+    background-color: rgb(255, 196, 0);
+}
+
+.navbar-brand {
+    font-size: xx-large !important;
+    font-weight: bold;
 }
 
 #view-all-albums {
@@ -176,16 +191,61 @@ img {
 #searchKeywords {
     border: 2px solid black;
     border-radius: 20px !important;
+    box-shadow: 3px 3px 0px 0px black !important;
 }
 
 #searchBtn {
+    margin-left: 5px;
     border-radius: 100%;
+    color: black;
+    background-color: aquamarine !important;
+    border: 2px solid black;
+    box-shadow: 3px 3px 0px 0px black !important;
 }
 
 #div-cont {
+    width: 100%;
     background-color: white;
     border: 2px solid black;
     border-radius: 20px;
-    box-shadow: 3px 3px 0px 0px black !important;
     margin: 20px 10px 10px 10px;
+    box-shadow: 3px 3px 0px 0px black !important;
+}
+
+
+.w3-light-grey {
+    background-color: white !important;
+}
+
+
+#url-button {
+    font-weight: bold;
+    color: black !important;
+    background-color: lightgray !important;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+#del-button {
+    font-weight: bold;
+    color: black !important;
+    background-color: rgb(255, 152, 161) !important;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+#move-button {
+    font-weight: bold;
+    color: black !important;
+    background-color: lightgray !important;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+#copy-button {
+    font-weight: bold;
+    color: black !important;
+    background-color: lightgray !important;
+    border: 2px solid black;
+    border-radius: 20px;
 }
