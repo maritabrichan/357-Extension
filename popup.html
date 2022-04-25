@@ -33,64 +33,66 @@
     <div class="container my-4">
         <div class="text-center">
             <a class="btn btn-primary btn-block text-center"
+               id="view-all-albums"
                href="albums.html"
                target="_blank" role="button">View All Albums</a>
         </div>
-        <hr class="w3-round">
-        <input class="form-control" id="albumSearch" type="text" placeholder="Search for Album">
         </br>
-        <p class="font-weight-bold px-3">Available Albums <i class="fa fa-info-circle" id="albumInfoTip"
-                                                             data-toggle="tooltip"
-                                                             data-placement="top"
-                                                             title="This is a list of available albums you can select to add the page to."
-                                                             aria-hidden="true"></i></p>
-        <ul class="list-group list-group-flush" id="albumList">
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check0">
-                    <label class="album-checkbox-label" for="check0">Books</label>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check1">
-                    <label class="album-checkbox-label" for="check1">Clothing/Fashion</label>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check2">
-                    <label class="album-checkbox-label" for="check2">Electronics</label>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check3">
-                    <label class="album-checkbox-label" for="check3">Food</label>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check4">
-                    <label class="album-checkbox-label" for="check3">School</label>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check5">
-                    <label class="album-checkbox-label" for="check5">Travel</label>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="album-checkbox">
-                    <input type="checkbox" class="album-checkbox-input" id="check6">
-                    <label class="album-checkbox-label" for="check6">Other</label>
-                </div>
-            </li>
-        </ul>
-        <div class="text-center py-3">
-            <a class="btn btn-primary" id="addToAlbum"
-              role="button">Save Page to Album</a>
+        <div id="add-to-album">
+            <p class="font-weight-bold px-3">Available Albums <i class="fa fa-info-circle" id="albumInfoTip"
+                                                                data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="This is a list of available albums you can select to add the page to."
+                                                                aria-hidden="true"></i></p>
+            <input class="form-control" id="albumSearch" type="text" placeholder="Search for Album">
+            <ul class="list-group list-group-flush" id="albumList">
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check0">
+                        <label class="album-checkbox-label" for="check0">Books</label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check1">
+                        <label class="album-checkbox-label" for="check1">Clothing/Fashion</label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check2">
+                        <label class="album-checkbox-label" for="check2">Electronics</label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check3">
+                        <label class="album-checkbox-label" for="check3">Food</label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check4">
+                        <label class="album-checkbox-label" for="check3">School</label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check5">
+                        <label class="album-checkbox-label" for="check5">Travel</label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="album-checkbox">
+                        <input type="checkbox" class="album-checkbox-input" id="check6">
+                        <label class="album-checkbox-label" for="check6">Other</label>
+                    </div>
+                </li>
+            </ul>
+            <div class="text-center py-3">
+                <a class="btn btn-primary" id="addToAlbum"
+                role="button">Save Page to Album</a>
+            </div>
         </div>
     </div>
 </main>

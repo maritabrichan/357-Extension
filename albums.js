@@ -53,6 +53,7 @@ function renderURL(record, tag) {
 
 
     recordDivCont.className = "w3-col m4 w3-margin-bottom"
+    recordDivCont.id = "div-cont"
     recordDiv.className = "w3-light-grey"
     imgDiv.className = "imgDiv"
     img.src = record.img;
