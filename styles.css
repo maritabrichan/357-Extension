@@ -1,24 +1,27 @@
 .list-group-item,
 body {
-    background-color: rgb(255, 247, 235) !important;
+    /* background-color: rgb(255, 247, 235) !important; */
+    background-color: rgb(255, 255, 255) !important;
+
 }
 
 
 .w3-text-red {
-    margin-top: 0px
-!important;
-    margin-bottom: -10px
-!important;
-}
-
-h1 {
+    margin-top: 0px !important;
+    margin-bottom: -10px !important;
+    font-family: Gill Sans, sans-serif;
     color: black !important;
 }
 
-#BookContainer, #SchoolContainer {
+#BookContainer, 
+#SchoolContainer
+#ElectronicsContainer,
+#FoodContainer,
+#TravelContainer,
+#OtherContainer
+{
     /* border-bottom: 4px solid black; */
-    margin: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 20px !important;
 }
 
 .w3-round {
@@ -36,6 +39,8 @@ h1 {
     width: 100%;
     height: 10em;
     overflow: hidden;
+    border-bottom: 2px solid black;
+    /* border-radius: 20px; */
 }
 
 .titleScroll {
@@ -94,11 +99,13 @@ img {
     z-index: 1000;
     border-bottom: 2px solid black;
     background-color: rgb(255, 196, 0);
+    /* padding: 10px 0px 20px 0px; */
 }
 
 .navbar-brand {
     font-size: xx-large !important;
-    font-weight: bold;
+    font-weight: 400;
+    font-family: Gill Sans, sans-serif;
 }
 
 #view-all-albums {
@@ -114,7 +121,7 @@ img {
 }
 
 #addToAlbum {
-    background-color: rgb(132, 255, 110) !important;
+    background-color: #06d6a0 !important;
     font-weight: bold !important;
 }
 
@@ -198,7 +205,7 @@ img {
     margin-left: 5px;
     border-radius: 100%;
     color: black;
-    background-color: aquamarine !important;
+    background-color: #06d6a0 !important;
     border: 2px solid black;
     box-shadow: 3px 3px 0px 0px black !important;
 }
@@ -209,6 +216,7 @@ img {
     border: 2px solid black;
     border-radius: 20px;
     margin: 20px 10px 10px 10px;
+    padding: 20px !important;
     box-shadow: 3px 3px 0px 0px black !important;
 }
 
@@ -220,32 +228,34 @@ img {
 
 #url-button {
     font-weight: bold;
-    color: black !important;
-    background-color: lightgray !important;
+    color: rgb(0, 0, 0) !important;
+    background-color: #06d6a0 !important;
     border: 2px solid black;
     border-radius: 20px;
+    width: 70% !important;
 }
 
 #del-button {
     font-weight: bold;
-    color: black !important;
-    background-color: rgb(255, 152, 161) !important;
+    color: rgb(0, 0, 0) !important;
+    background-color: #EF476F !important;
     border: 2px solid black;
     border-radius: 20px;
+    width: 70% !important;
 }
 
 #move-button {
     font-weight: bold;
-    color: black !important;
-    background-color: lightgray !important;
+    color: rgb(0, 0, 0) !important;
+    background-color: #06d6a0 !important;
     border: 2px solid black;
     border-radius: 20px;
 }
 
 #copy-button {
     font-weight: bold;
-    color: black !important;
-    background-color: lightgray !important;
+    color: rgb(0, 0, 0) !important;
+    background-color: #06d6a0 !important;
     border: 2px solid black;
     border-radius: 20px;
 }

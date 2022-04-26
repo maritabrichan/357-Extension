@@ -1,5 +1,6 @@
 {
-  "name": "357-Extension",
+  "name": "Favplace",
+  "icons": {"128": "Favplace.png"},
   "version": "1.0.0",
   "description": "TBA",
   "author": "TBA",
