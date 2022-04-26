@@ -53,6 +53,7 @@ function renderURL(record, tag) {
 
 
     recordDivCont.className = "w3-col m4 w3-margin-bottom"
+    recordDivCont.id = "div-cont"
     recordDiv.className = "w3-light-grey"
     imgDiv.className = "imgDiv"
     img.src = record.img;
@@ -73,10 +74,14 @@ function renderURL(record, tag) {
 
     containerBtn.className = "btn-group btn-group-justified"
     urlBtn.className = "btn btnSeparator w3-padding-small w3-button w3-dark-grey"
+    urlBtn.id="url-button"
     delBtn.className = "btn w3-padding-small w3-hover-red w3-dark-grey"
+    delBtn.id="del-button"
     cp_mvBtn.className = "btn-group d-flex"
     moveBtn.className = "btn btnSeparatorR w3-button w3-padding-small w3-dark-grey"
+    moveBtn.id="move-button"
     copyBtn.className = "btn  btnSeparatorL w3-button w3-padding-small w3-dark-grey"
+    copyBtn.id="copy-button"
 
 
     let option = document.createElement("option");
